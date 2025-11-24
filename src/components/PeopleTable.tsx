@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useLocation, Link } from 'react-router-dom';
 import { getSearchWith } from '../utils/searchHelper';
 import { Person } from '../types/Person';
 
@@ -10,6 +10,7 @@ type Props = {
 
 export const PeopleTable: React.FC<Props> = ({ people, selectedSlug }) => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const location = useLocation();
 
   const sort = searchParams.get('sort');
   const order = searchParams.get('order');
@@ -138,9 +139,15 @@ export const PeopleTable: React.FC<Props> = ({ people, selectedSlug }) => {
               className={isSelected ? 'has-background-warning' : ''}
             >
               <td>
-                <a href={`#/people/${person.slug}`} className={nameClass}>
+                <Link
+                  to={{
+                    pathname: `/people/${person.slug}`,
+                    search: location.search,
+                  }}
+                  className={nameClass}
+                >
                   {person.name}
-                </a>
+                </Link>
               </td>
 
               <td>{person.sex}</td>
