@@ -157,8 +157,11 @@ export const PeopleTable: React.FC<Props> = ({ people, selectedSlug }) => {
               <td>
                 {person.motherName ? (
                   motherPerson ? (
-                    <a
-                      href={`#/people/${motherPerson.slug}`}
+                    <Link
+                      to={{
+                        pathname: `/people/${motherPerson.slug}`,
+                        search: location.search,
+                      }}
                       className={
                         motherPerson.sex === 'f'
                           ? 'has-text-danger'
@@ -166,7 +169,7 @@ export const PeopleTable: React.FC<Props> = ({ people, selectedSlug }) => {
                       }
                     >
                       {motherPerson.name}
-                    </a>
+                    </Link>
                   ) : (
                     person.motherName
                   )
@@ -178,8 +181,11 @@ export const PeopleTable: React.FC<Props> = ({ people, selectedSlug }) => {
               <td>
                 {person.fatherName ? (
                   fatherPerson ? (
-                    <a
-                      href={`#/people/${fatherPerson.slug}`}
+                    <Link
+                      to={{
+                        pathname: `/people/${fatherPerson.slug}`,
+                        search: location.search,
+                      }}
                       className={
                         fatherPerson.sex === 'f'
                           ? 'has-text-danger'
@@ -187,7 +193,7 @@ export const PeopleTable: React.FC<Props> = ({ people, selectedSlug }) => {
                       }
                     >
                       {fatherPerson.name}
-                    </a>
+                    </Link>
                   ) : (
                     person.fatherName
                   )
